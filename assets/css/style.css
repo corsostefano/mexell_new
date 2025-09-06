@@ -45,6 +45,27 @@ ul {
   margin: auto;
 }
 
+
+ .section__title {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
 /* HEADER TOP */
 .header__top {
   background: var(--primary-color);
@@ -794,6 +815,7 @@ p {
   line-height: 1.7;
   margin-bottom: 2rem;
   color: var(--text-color, #444);
+  text-align: justify;
 }
 
 .about__cta {
@@ -1601,7 +1623,7 @@ p {
   background: #0B3558;
   color: #fff;
   padding: 3rem 1.5rem 1rem;
-  margin-top: 3rem;
+ 
 }
 
 .footer__container {
@@ -1735,7 +1757,11 @@ p {
 
 /* ---------- NUESTRA HISTORIA ---------- */
 .history {
-  padding: 4rem 0;
+  position: relative;
+  padding: 4rem 1rem;
+  background: #fff;
+  overflow: hidden;
+  text-align: center;
 }
 
 .history .section__title {
@@ -1767,15 +1793,51 @@ p {
 }
 
 .history .row img {
+  width: 50%;
+  margin: auto;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* ========= Círculo Animado en History ========= */
+
+.history__circle {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  background: var(--first-color, #0B3558);
+  opacity: 0.07;
+  top: -250px;
+  left: -200px;
+  z-index: 0;
+  animation: circleMove 12s ease-in-out infinite alternate;
+}
+
+/* ======= Responsivo ======= */
+@media (max-width: 1024px) {
+  .history__circle {
+    width: 500px;
+    height: 500px;
+    top: -180px;
+    right: -150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .history__circle {
+    width: 380px;
+    height: 380px;
+    top: -160px;
+    right: 50%;
+    transform: translateX(50%); /* lo centra en móviles */
+  }
+}
 /* ---------- TIMELINE ---------- */
 .timeline {
   display: grid;
   gap: 1.5rem;
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -1947,11 +2009,11 @@ p {
 }
 
 .technology .section__title {
-  color: var(--primary-color);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 3rem;
+  position: relative;
 }
 
 .technology .section__title::after {
@@ -1972,51 +2034,64 @@ p {
   text-align: center;
 }
 
-/* ========== GALERÍA TECHNOLOGY ========== */
+/* ========== GALERÍA TECHNOLOGY (estilo Capacidades Materializadas) ========== */
 .tech-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  column-count: 3; /* Masonry en desktop */
+  column-gap: 1.2rem;
 }
 
 .tech-card {
+  display: block; /* ahora son enlaces <a> */
   position: relative;
+  margin-bottom: 1.2rem;
+  break-inside: avoid;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none; /* quitar subrayado de link */
+  color: inherit; /* evitar color azul de enlace */
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
 }
 
 .tech-card img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: auto;
   display: block;
-  transition: transform 0.3s ease;
+  border-radius: 1rem;
+  transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 .tech-card:hover img {
   transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .tech-caption {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: rgba(11, 53, 88, 0.8); /* Azul Mexell oscuro semitransparente */
+  background: rgba(11, 53, 88, 0.85); /* Azul Mexell */
   color: #fff;
+  font-size: 0.9rem;
+  padding: 0.6rem;
   text-align: center;
-  padding: 0.5rem 0;
-  font-size: 0.95rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
 }
 
 .tech-card:hover .tech-caption {
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Responsivo Masonry */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .tech-gallery {
     column-count: 2;
@@ -2214,5 +2289,1452 @@ p {
 
   .hero--quickshift h2 {
     font-size: 1rem;
+  }
+}
+
+/* ==============================
+   IMPACTO REAL
+============================== */
+.impacto {
+  background-color: var(--light-color);
+  padding: 4rem 0;
+}
+
+.impacto__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.impacto__text {
+  text-align: left;
+}
+
+.impacto .section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.impacto .section-title::after {
+content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.impacto p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  max-width: 95%;
+  text-align: justify;
+}
+
+.impacto strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.impacto__graphic img {
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s var(--transition);
+}
+
+.impacto__graphic img:hover {
+  transform: scale(1.03);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 992px) {
+  .impacto__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .impacto__text {
+    text-align: center;
+  }
+
+  .impacto .section-title::after {
+    margin: 0.4rem auto 0;
+  }
+
+  .impacto p {
+    margin: 0 auto 1.5rem;
+    text-align: justify;
+  }
+}
+
+/* TITULOS Y TEXTOS */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--title-color);
+}
+
+.section-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: var(--text-color);
+}
+
+/* ----------------
+   Portfolio
+---------------- */
+/* ----------------
+   Portfolio Cards
+---------------- */
+.portfolio {
+  background: #f8f8f8;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.portfolio__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0B3558; /* Azul Mexell */
+  margin-bottom: 3rem;
+}
+
+.portfolio__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.portfolio__card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.portfolio__card p {
+  margin-top: 0.8rem;
+  color: var(--text-color);
+
+  font-size: 0.875rem;
+}
+
+/* Imagen estilo "hero" */
+.portfolio__icon {
+  width: 100%;
+  height: 160px;
+  margin: 0 auto 1rem auto;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 👈 Ajustado para logos/productos */
+  transition: transform 0.5s ease;
+}
+
+/* Overlay Azul Mexell */
+.portfolio__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 53, 88, 0);
+  transition: background 0.4s ease;
+}
+
+.portfolio__card:hover .portfolio__icon::after {
+  background: rgba(11, 53, 88, 0.35);
+}
+
+.portfolio__card:hover .portfolio__icon img {
+  transform: scale(1.08);
+}
+
+/* Títulos y textos */
+.portfolio__card h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+
+.portfolio__card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.portfolio__card:hover h4 {
+  color: #0B3558;
+}
+
+.portfolio__card:hover p {
+  color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------
+   Análisis Section
+---------------- */
+.analisis {
+  background: #f9f9f9;
+}
+
+.analisis__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.analisis__content {
+  text-align: left;
+}
+
+.analisis__content .section-title {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  
+}
+
+/* Línea decorativa bajo el título */
+.analisis__content .section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.analisis__content .section-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* Imagen */
+.analisis__graphic img {
+  width: 100%;
+  max-width: 480px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.analisis__graphic small {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .analisis__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .analisis__content {
+    text-align: center;
+  }
+
+  /* Ajuste línea decorativa centrada en móvil */
+  .analisis__content .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+/* ----------------
+   Proceso Cards
+---------------- */
+.process {
+  background: #fff;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.process__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0B3558;
+  margin-bottom: 3rem;
+}
+
+.process__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.process__card {
+  background: #f8f8f8;
+  padding: 2rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.process__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Iconos */
+.process__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.2rem auto;
+  border-radius: 50%;
+  background: rgba(11, 53, 88, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.process__icon i {
+  font-size: 2rem;
+  color: #0B3558;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.process__card:hover .process__icon {
+  background: var(--secondary-color);
+}
+
+.process__card:hover .process__icon i {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* Textos */
+.process__card h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+
+.process__card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.process__card:hover h4 {
+  color: #0B3558;
+}
+
+.process__card:hover p {
+  color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .process__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .process__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- HERO INGENIERÍA Y DISEÑO ---------- */
+.hero--ingenieria {
+  position: relative;
+  height: 110vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hero--ingenieria .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 53, 88, 0.65); /* overlay azul corporativo */
+}
+
+.hero--ingenieria .hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero--ingenieria h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.hero--ingenieria h2 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #fff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+  .hero--ingenieria h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero--ingenieria h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero--ingenieria {
+    height: 65vh;
+  }
+
+  .hero--ingenieria h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero--ingenieria h2 {
+    font-size: 1rem;
+  }
+}
+
+/* ----------------
+   Proceso Ingeniería
+---------------- */
+.process_ingenieria {
+  background: var(--light-bg, #f8f9fa);
+  padding: 4rem 0;
+}
+
+.process_ingenieria__timeline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.process_ingenieria__step {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.process_ingenieria__step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.process_ingenieria__icon {
+  margin-bottom: 1rem;
+}
+
+.process_ingenieria__icon img {
+  width: auto;   /* más grande */
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.process_ingenieria__content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+.process_ingenieria__content p {
+  font-size: 1rem;
+  color: var(--text-color, #555);
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .process_ingenieria__timeline {
+    grid-template-columns: 1fr;
+  }
+  .process_ingenieria__icon img {
+    width: auto;
+  }
+}
+
+/* ===========================
+   SECCIÓN: INGENIERÍA EN ACCIÓN
+=========================== */
+.accion_ingenieria {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.accion_ingenieria .section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.accion_ingenieria .section__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.accion_ingenieria .section__subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 3rem;
+}
+
+.accion_ingenieria__container {
+  gap: 2rem;
+  text-align: start;
+ 
+}
+
+.accion_ingenieria__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.accion_ingenieria__description {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.accion_ingenieria__block{
+  max-width: 1200px;
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+/* ========== GALERÍA DE INGENIERÍA ========== */
+.accion_ingenieria__gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.accion_ingenieria__card {
+  display: block; /* son <a> */
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none; /* quitar subrayado */
+  color: inherit; /* mantener color de texto */
+}
+
+.accion_ingenieria__card:hover {
+  transform: translateY(-5px);
+}
+
+.accion_ingenieria__card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.accion_ingenieria__card:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.accion_ingenieria__caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(11, 53, 88, 0.85); /* Azul Mexell */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+.accion_ingenieria__card:hover .accion_ingenieria__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .accion_ingenieria__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .accion_ingenieria__gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* ========== HERO FABRICACIÓN Y MECANIZADO ========== */
+.hero--fabricacion {
+  position: relative;
+  height: 110vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hero--fabricacion .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 53, 88, 0.7); /* un poco más intenso que ingeniería */
+}
+
+.hero--fabricacion .hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero--fabricacion h1 {
+  font-size: 3rem; /* un poco más grande para enfatizar "Realidad Rentable" */
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.hero--fabricacion h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #fff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+  .hero--fabricacion h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero--fabricacion h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero--fabricacion {
+    height: 65vh;
+  }
+
+  .hero--fabricacion h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero--fabricacion h2 {
+    font-size: 1rem;
+  }
+}
+
+/* ====== SECCIÓN PILARES ====== */
+.pilares {
+  padding: rem 1rem;
+  background-color: #f9f9f9; /* fondo claro para contraste */
+  text-align: center;
+}
+
+.pilares__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0B3558; /* azul corporativo */
+}
+
+.pilares__subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.pilares__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.pilar {
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pilar:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.pilar__icon {
+  font-size: 3rem;
+  color: #0B3558;
+  margin-bottom: 1rem;
+}
+
+.pilar__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #0B3558;
+}
+
+.pilar__desc {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 992px) {
+  .pilares__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .pilares__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pilares__title {
+    font-size: 2rem;
+  }
+}
+
+/* ====== SECCIÓN PRECISIÓN ÓPTIMA ====== */
+.precision {
+  padding: 2rem 1rem;
+  background-color: #fff;
+}
+
+.precision__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.precision__content .section__title {
+  font-size: 2.2rem;
+  color: #0B3558;
+  margin-bottom: 1rem;
+}
+
+.precision__content .section__subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--first-color, #0B3558);
+  margin-bottom: 1.5rem;
+}
+
+.precision__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-color, #444);
+}
+
+/* ====== INFOGRAFÍA ESPECTRO ====== */
+.precision__spectrum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: center;
+}
+
+.spectrum__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.spectrum__icon {
+  font-size: 2.2rem;
+  color: var(--secondary-color) ;
+  margin-bottom: 0.5rem;
+}
+
+.spectrum__center {
+  flex: 1.2;
+  text-align: center;
+}
+
+.spectrum__logo {
+  max-width: 100%;
+  margin-bottom: 0.8rem;
+}
+
+.spectrum__arrow {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #0B3558, #1A73E8);
+  border-radius: 4px;
+  margin: 0.8rem 0;
+}
+
+.precision__text{
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  max-width: 95%;
+  text-align: justify;
+}
+
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 992px) {
+  .precision__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .precision__spectrum {
+    flex-direction: column;
+  }
+
+  .spectrum__arrow {
+    width: 200px;
+    margin: 1rem auto;
+  }
+}
+
+/* ===== GALERÍA DE CAPACIDADES MATERIALIZADAS ===== */
+.cap_materializadas {
+  margin-top: 1rem;
+}
+
+.cap_materializadas__title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.cap_materializadas__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  margin-bottom: 3rem;
+}
+
+/* ===== Masonry Layout ===== */
+.cap_materializadas__gallery {
+  column-count: 1;       /* móvil */
+  column-gap: 1.2rem;    /* separación */
+}
+
+.cap_materializadas__item {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.2rem;
+  break-inside: avoid;   /* evita cortes en masonry */
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cap_materializadas__item:hover {
+  transform: translateY(-5px);
+}
+
+.cap_materializadas__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.cap_materializadas__item:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ===== Caption ===== */
+.cap_materializadas__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(11,53,88,0.85); /* Azul Mexell */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+.cap_materializadas__item:hover .cap_materializadas__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .cap_materializadas__gallery {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cap_materializadas__gallery {
+    column-count: 3;
+  }
+}
+
+/* ========== EL COSTO REAL DE LA INACTIVIDAD ========== */
+.inactividad {
+  background: #fff; /* Fondo claro y limpio */
+  padding: 5rem 1rem;
+}
+
+.inactividad__container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.inactividad__title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--first-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.inactividad__text {
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  color: var(--text-color);
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .inactividad__title {
+    font-size: 1.8rem;
+  }
+
+  .inactividad__text {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+}
+
+/* ========== SUMINISTRO ÁGIL DE REPUESTOS ========== */
+.repuestos__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.repuestos__subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--first-color);
+  margin-bottom: 1.5rem;
+}
+
+.repuestos__content p {
+font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  max-width: 95%;
+  text-align: justify;
+}
+
+.repuestos__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.repuestos__card {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--container-color);
+  transition: transform 0.3s ease;
+}
+
+.repuestos__card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.repuestos__card:hover {
+  transform: translateY(-4px);
+}
+
+/* CTA */
+.repuestos__cta {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.repuestos__cta .button {
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.repuestos__cta .button:hover {
+  background-color: var(--first-color-alt);
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .repuestos__container {
+    grid-template-columns: 1fr;
+  }
+
+  .repuestos__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .repuestos__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .repuestos__card img {
+    height: 180px;
+  }
+}
+
+/* ========== INGENIERÍA APLICADA EN LÍNEA ========== */
+.ingenieria__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.ingenieria__title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+.ingenieria__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  margin-bottom: 3rem;
+}
+
+.ingenieria__content p {
+  text-align: center;
+  line-height: 1.7rem;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ingenieria__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.ingenieria__card {
+  background: #fff;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.ingenieria__card:hover {
+  transform: translateY(-4px);
+}
+
+.ingenieria__card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.ingenieria__caption {
+  background: rgba(11, 53, 88, 0.9); /* Azul Mexell con contraste */
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 0.8rem;
+  line-height: 1.4rem;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .ingenieria__gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .ingenieria__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .ingenieria__card img {
+    height: 200px;
+  }
+}
+
+/* ========== RETROFITTING Y MODERNIZACIÓN ========== */
+.retrofitting__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.retrofitting__subtitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--first-color);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.retrofitting__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.retrofitting__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: var(--title-color);
+}
+
+.retrofitting__col p {
+  text-align: justify;
+  line-height: 1.7rem;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.retrofitting__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.retrofitting__card {
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.retrofitting__card:hover {
+  transform: translateY(-4px);
+}
+
+.retrofitting__card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CTA */
+.retrofitting__cta {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.button-retro {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: var(--first-color);
+  color: #fff;
+  border-radius: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.button-retro:hover {
+  background: var(--first-color-alt);
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .retrofitting__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .retrofitting__gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .retrofitting__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .retrofitting__card img {
+    height: 200px;
+  }
+}
+/* ========== FABRICACIÓN DE MÁQUINAS A MEDIDA ========== */
+.maquinas-medida__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.maquinas-medida__subtitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.maquinas-medida__text p {
+    text-align: justify;
+  line-height: 1.7rem;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.maquinas-medida__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.maquinas-medida__comparativa {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.maquinas-medida__img {
+  position: relative;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.maquinas-medida__img:hover {
+  transform: translateY(-4px);
+}
+
+.maquinas-medida__img img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.maquinas-medida__tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(11, 53, 88, 0.85);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+}
+
+/* CTA */
+.maquinas-medida__cta {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.button-maq {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: var(--first-color);
+  color: #fff;
+  border-radius: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.button-maq:hover {
+  background: var(--first-color-alt);
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .maquinas-medida__container {
+    grid-template-columns: 1fr;
+  }
+
+  .maquinas-medida__comparativa {
+    grid-template-columns: 1fr;
+  }
+
+  .maquinas-medida__img img {
+    height: 200px;
   }
 }

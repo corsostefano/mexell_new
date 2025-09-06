@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
   <!--====== SWIPER CSS ======-->
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <!--====== LIGHTBOX CSS ======-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
   <title>Mexell - Sobre Nosotros</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -69,9 +71,11 @@
     </h2>
   </div>
 </section>
-
 <!-- ========== NUESTRA HISTORIA ========== -->
-<section class="history container">
+<section class="history section">
+  <!-- Círculo decorativo animado -->
+  <div class="history__circle"></div>
+
   <h2 class="section__title">Nuestra Historia</h2>
 
   <div class="row">
@@ -85,7 +89,7 @@
       </p>
     </div>
     <div class="col">
-      <img src="assets/img/sobre-nosotros_historia_fundador.jpg" alt="Historia Mexell S.A.">
+      <img src="assets/img/sobre-nosotros_historia_fundador.png" alt="Historia Mexell S.A.">
     </div>
   </div>
 
@@ -149,37 +153,60 @@
 
 
 <!-- ========== INSTALACIONES Y TECNOLOGÍA ========== -->
-<section class="technology section container">
+<section class="technology section container text-center">
   <h3 class="section__title">Tecnología y Procesos de Precisión</h3>
   <p class="text-center mb-5">
     Nuestra capacidad operativa se fundamenta en la aplicación de tecnología de punta y procesos rigurosos. Desde nuestros centros en CABA y Pilar, nuestro equipo utiliza herramientas avanzadas para transformar diseños complejos en soluciones tangibles, incluyendo mecanizado CNC, escaneo 3D para ingeniería inversa, y software avanzado de diseño y simulación.
   </p>
 
   <div class="tech-gallery">
-    <div class="tech-card reveal">
+    <a href="assets/img/sobre-nosotros_tecnologia_escaner3d (1).jpg" 
+       data-lightbox="tech" 
+       data-title="Ingeniería Inversa" 
+       class="tech-card reveal">
       <img src="assets/img/sobre-nosotros_tecnologia_escaner3d (1).jpg" alt="Ingeniería Inversa">
       <div class="tech-caption">Ingeniería Inversa</div>
-    </div>
-    <div class="tech-card reveal">
+    </a>
+
+    <a href="assets/img/sobre-nosotros_tecnologia_inspeccion-cmm.webp" 
+       data-lightbox="tech" 
+       data-title="Control de Calidad Dimensional" 
+       class="tech-card reveal">
       <img src="assets/img/sobre-nosotros_tecnologia_inspeccion-cmm.webp" alt="Control Dimensional">
       <div class="tech-caption">Control de Calidad Dimensional</div>
-    </div>
-    <div class="tech-card reveal">
+    </a>
+
+    <a href="assets/img/sobre-nosotros_tecnologia_torno-cnc.jpg" 
+       data-lightbox="tech" 
+       data-title="Mecanizado CNC" 
+       class="tech-card reveal">
       <img src="assets/img/sobre-nosotros_tecnologia_torno-cnc.jpg" alt="Mecanizado CNC">
       <div class="tech-caption">Mecanizado CNC</div>
-    </div>
-    <div class="tech-card reveal">
-      <img src="assets/img/sobre-nosotros_tecnologia_tratamiento-superficial.avif" alt="Tratamientos Avanzados">
+    </a>
+
+    <a href="assets/img/sobre-nosotros_tecnologia_tratamiento-superficial.png" 
+       data-lightbox="tech" 
+       data-title="Tratamientos Avanzados" 
+       class="tech-card reveal">
+      <img src="assets/img/sobre-nosotros_tecnologia_tratamiento-superficial.png" alt="Tratamientos Avanzados">
       <div class="tech-caption">Tratamientos Avanzados</div>
-    </div>
-    <div class="tech-card reveal">
+    </a>
+
+    <a href="assets/img/sobre-nosotros_tecnologia_equipo-en-planta.JPG" 
+       data-lightbox="tech" 
+       data-title="Asistencia Técnica en Planta" 
+       class="tech-card reveal">
       <img src="assets/img/sobre-nosotros_tecnologia_equipo-en-planta.JPG" alt="Equipo en Planta">
       <div class="tech-caption">Asistencia Técnica en Planta</div>
-    </div>
-    <div class="tech-card reveal">
+    </a>
+
+    <a href="assets/img/sobre-nosotros_tecnologia_simulacion.png" 
+       data-lightbox="tech" 
+       data-title="Simulación de Procesos" 
+       class="tech-card reveal">
       <img src="assets/img/sobre-nosotros_tecnologia_simulacion.png" alt="Simulación de Procesos">
       <div class="tech-caption">Simulación de Procesos</div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -258,6 +285,8 @@
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
+     <!--====== LIGHTBOX JS ======-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     <script>
       // Scroll Reveal para valores
 document.addEventListener("DOMContentLoaded", () => {
