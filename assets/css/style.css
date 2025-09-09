@@ -205,6 +205,62 @@ ul {
     top: 0 !important;
   }
 }
+
+/* Contenedor del dropdown */
+.dropdown {
+  position: relative;
+}
+
+/* Submenú oculto por defecto */
+.dropdown__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+  min-width: 220px;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+/* Items del submenú */
+.dropdown__menu li {
+  list-style: none;
+}
+
+.dropdown__menu a {
+  display: block;
+  padding: 0.7rem 1rem;
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.dropdown__menu a:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+/* Mostrar al pasar el mouse en escritorio */
+.dropdown:hover .dropdown__menu {
+  display: block;
+}
+
+/* Responsive: mostrar submenú dentro del menú mobile */
+@media (max-width: 992px) {
+  .dropdown__menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+  .btn__galery__menu{
+    display:none
+  }
+}
+
 /* ----------------
    Hero
 ---------------- */
