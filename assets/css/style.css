@@ -585,15 +585,10 @@ ul {
    RESPONSIVE
    ================================ */
 
-/* Tablet: grid en 2 columnas */
-@media (max-width: 1024px) {
-  .industries__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+
 
 /* Móvil: scroll manual optimizado */
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .industries {
     padding: 3rem 1rem;
   }
