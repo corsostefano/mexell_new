@@ -34,35 +34,44 @@
             <a href="index.html" class="logo">
                 <img src="assets/img/logo_original.png" alt="Mexell Logo">
             </a>
-      
-            <nav class="nav__menu" id="nav-menu">
-                <ul class="nav__links">
-                  <li><a href="index.html" class="nav__link">Inicio</a></li>
-                  <li><a href="index.html#about" class="nav__link">Sobre Nosotros</a></li>
-                   <li class="nav__item dropdown">
-                    <a href="index.html#services" class="nav__link active">Servicios</a>
-                    <ul class="dropdown__menu">
-                      <li><a href="ingenieria-diseno.html">Ingeniería y Diseño a Medida</a></li>
-                      <li><a href="oee-smed.html">Optimización OEE y Cambios de Formato (SMED)</a></li>
-                      <li><a href="fabricacion-mecanizados.html">Fabricación de Precisión y Mecanizados</a></li>
-                      <li><a href="mantenimiento-retrofit.html">Mantenimiento, Repuestos y Retrofitting</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="index.html#faq" class="nav__link">FAQ</a></li>
-                  <li><a href="index.html#contact" class="nav__link">Contacto</a></li>
-                  <li class="nav__item dropdown">
-                    <a href="#" class="btn__galery__menu">Galerías</a>
-                    <ul class="dropdown__menu">
-                      <li><a href="galeria-maquinaria.html">Galería de Maquinaria</a></li>
-                      <li><a href="galeria-repuestos.html">Galería de Repuestos</a></li>
-                      <li><a href="galeria-retrofitting.html">Galería de Retrofitting</a></li>
-                    </ul>
-                  </li>
-                </ul>
-            </nav>
-      
+
+                    <nav class="nav__menu" id="nav-menu">
+          <ul class="nav__links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="#about">Sobre Nosotros</a></li>
+
+            <!-- Dropdown Servicios -->
+            <li class="nav__item dropdown">
+              <a href="index.html#services" class="dropdown__link">
+                Servicios <span class="dropdown__icon"></span>
+              </a>
+              <ul class="dropdown__menu">
+                <li><a href="ingenieria-diseno.html">Ingeniería y Diseño a Medida</a></li>
+                <li><a href="oee-smed.html">Optimización OEE y Cambios de Formato (SMED)</a></li>
+                <li><a href="fabricacion-mecanizados.html">Fabricación de Precisión y Mecanizados</a></li>
+                <li><a href="mantenimiento-retrofit.html">Mantenimiento, Repuestos y Retrofitting</a></li>
+              </ul>
+            </li>
+
+            <!--<li><a href="case-studies/index.html">Casos de Estudio</a></li>-->
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contacto</a></li>
+
+            <!-- Dropdown Galerías -->
+            <li class="nav__item dropdown">
+              <a href="#" class="dropdown__link">
+                Galerías <span class="dropdown__icon"></span>
+              </a>
+              <ul class="dropdown__menu">
+                <li><a href="galeria-maquinaria.html">Galería de Maquinaria</a></li>
+                <li><a href="galeria-repuestos.html">Galería de Repuestos</a></li>
+                <li><a href="galeria-retrofitting.html">Galería de Retrofitting</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
             <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú">
-                ☰
+               <i class="ri-apps-2-line"></i>
             </button>
           </div>
       </div>
