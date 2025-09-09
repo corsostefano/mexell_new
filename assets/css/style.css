@@ -439,11 +439,18 @@ ul {
 /*-----------
  swiper carousel 
  ------------ */
- 
+/* Contenedor principal */
+.trust-carousel {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #fff; /* puedes dejarlo transparente si prefieres */
+}
+
+/* Título de la sección */
 .trust-carousel__text {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #0B3558; /* tono corporativo */
+  color: #0B3558;
   margin-bottom: 2.5rem;
   text-align: center;
   position: relative;
@@ -459,24 +466,29 @@ ul {
   border-radius: 3px;
 }
 
-/* Carrusel Swiper */
+/* Slides del carrusel */
 .swiper-slide_mod {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px; /* da espacio interno para aire */
 }
 
-.swiper-slide_mod img {
-  max-width: 100px;   /* tamaño uniforme */
-  max-height: 60px;
-  object-fit: contain;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Estilo de las marcas en texto */
+.trust-carousel .swiper-slide span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
   opacity: 0.85;
+  letter-spacing: 0.5px; /* mejor lectura */
+  text-transform: uppercase; /* homogéneo */
+  transition: all 0.3s ease;
 }
 
-.swiper-slide_mod img:hover {
-  transform: scale(1.1);
+.trust-carousel .swiper-slide span:hover {
+  color: var(--secondary-color);
   opacity: 1;
+  transform: scale(1.05);
 }
 
 /* Responsive */
@@ -485,12 +497,10 @@ ul {
     font-size: 1.4rem;
   }
 
-  .swiper-slide_mod img {
-    max-width: 100px;
-    max-height: 45px;
+  .trust-carousel .swiper-slide span {
+    font-size: 0.95rem; /* más compacto en móvil */
   }
 }
-
 /* ================= Experiencia Multisectorial ================= */
 
 /* ===== INDUSTRIES SECTION ===== */
