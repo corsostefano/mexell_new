@@ -697,16 +697,12 @@ ul {
   }
 
   /* Gradientes laterales como pista de scroll */
-  .industries__scroll::before,
-  .industries__scroll::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    pointer-events: none;
-    z-index: 2;
-  }
+.industries__scroll::before,
+.industries__scroll::after {
+  top: 10%;
+  bottom: 10%;
+  width: 30px;
+}
   .industries__scroll::before {
     left: 0;
     background: linear-gradient(to right, #fff 70%, transparent);
